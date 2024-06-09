@@ -6,16 +6,28 @@ function load() {
 	canvas.width = window.innerWidth - 40;
 	canvas.height = window.innerHeight - 40;
 
-	ctx = canvas.getContext('2D');
+	ctx = canvas.getContext('2d');
 
 	draw();
 }
 
+function x(t) {
+	return 200 * Math.cos(t / 8);
+}
+
+function y(t) {
+	// return 200 * Math.sin(t / 8);
+	return 200 * (t / 800);
+}
+
 function draw() {
 	ctx.beginPath();
-	ctx.moveTo(50, 50);
-	ctx.lineTo(400, 400);
-	ctx.lineWidth = 5;
-	ctx.strokeStyle = '#FF0000';
+	ctx.moveTo(x(t) + canvas.width / 2, y(t) + canvas.height / 2);
+	t++;
+	ctx.lineTo(x(t) + canvas.width / 2, y(t) + canvas.height / 2);
+	ctx.lineWidth = 2;
+	ctx.strokeStyle = '#f00';
 	ctx.stroke();
+
+	requestAnimationFrame(draw);
 }
